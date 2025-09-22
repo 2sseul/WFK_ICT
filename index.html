@@ -1,0 +1,1177 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>메고브레비 - WFK ICT Volunteering</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            scroll-behavior: smooth;
+        }
+
+        /* 전문적인 헤더 */
+        .header {
+            background: white;
+            border-bottom: 1px solid #e5e7eb;
+            padding: 20px 40px;
+        }
+
+        .header-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .header-image {
+            width: 48px;
+            height: 48px;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .header-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .header-text h1 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #111827;
+            margin-bottom: 2px;
+        }
+
+        .header-text p {
+            font-size: 0.875rem;
+            color: #6b7280;
+            font-weight: 500;
+        }
+
+        .header-nav {
+            display: flex;
+            align-items: center;
+            gap: 32px;
+        }
+
+        .header-nav a {
+            color: #374151;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: color 0.2s ease;
+        }
+
+        .header-nav a:hover {
+            color: #111827;
+        }
+
+        /* 히어로 섹션을 더 전문적으로 */
+        .hero {
+            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+            padding: 80px 40px 80px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            min-height: 70vh;
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 900;
+            color: #111827;
+            margin-bottom: 16px;
+            letter-spacing: -1px;
+        }
+
+        .hero-subtitle {
+            font-size: 1.25rem;
+            color: #4f46e5;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .hero-description {
+            font-size: 1.125rem;
+            color: #6b7280;
+            max-width: 600px;
+            margin: 0 auto 50px;
+            line-height: 1.7;
+        }
+
+        /* 전문적인 네비게이션 */
+        .hero-nav {
+            background: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 12px;
+            padding: 8px;
+            display: inline-flex;
+            gap: 4px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            margin-bottom: 60px;
+        }
+
+        .nav-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 20px;
+            color: #6b7280;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            border-radius: 8px;
+            transition: all 0.2s ease;
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            background: #4f46e5;
+            color: white;
+        }
+
+        .nav-link::before {
+            content: attr(data-icon);
+            font-size: 1rem;
+        }
+
+        .hero-stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 60px;
+            margin-top: 80px;
+            margin-bottom: 80px;
+            max-width: 800px;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 900;
+            color: #1a1a1a;
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 0.85rem;
+            color: #6c757d;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 8px;
+        }
+
+        /* 섹션 공통 스타일 */
+        .section {
+            padding: 120px 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 3.5rem;
+            font-weight: 800;
+            color: #1a1a1a;
+            letter-spacing: -2px;
+            margin-bottom: 24px;
+            text-align: center;
+        }
+
+        .section-subtitle {
+            font-size: 1.2rem;
+            color: #6c757d;
+            text-align: center;
+            margin-bottom: 80px;
+            font-weight: 400;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        /* ClassRoom 섹션 */
+        .classroom-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 32px;
+            margin-bottom: 60px;
+        }
+
+        .class-card {
+            background: white;
+            border: 1px solid #e9ecef;
+            border-radius: 16px;
+            padding: 30px;
+            transition: all 0.3s ease;
+        }
+
+        .class-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            border-color: #1a1a1a;
+        }
+
+        .class-card h3 {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 16px;
+        }
+
+        .class-card p {
+            color: #495057;
+            line-height: 1.6;
+            margin-bottom: 24px;
+        }
+
+        .class-link {
+            display: inline-flex;
+            align-items: center;
+            color: #1a1a1a;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            gap: 8px;
+            transition: transform 0.2s ease;
+        }
+
+        .class-link:hover {
+            transform: translateX(4px);
+        }
+
+        /* Photo 섹션 캐러셀 */
+        .photo-carousel {
+            position: relative;
+            width: 100%;
+            height: 500px;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            margin-bottom: 40px;
+        }
+
+        .photo-slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .photo-slide.active {
+            opacity: 1;
+        }
+
+        .photo-slide:nth-child(1) {
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.2)), 
+                        url('./asset/image1.jpg');
+            background-size: cover;
+            background-position: bottom;
+        }
+
+        .photo-slide:nth-child(2) {
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.2)), 
+                        url('./asset/image2.jpg');
+            background-size: cover;
+            background-position: bottom;
+        }
+
+        .photo-slide:nth-child(3) {
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.2)), 
+                        url('./asset/image3.jpg');
+            background-size: cover;
+            background-position: bottom;
+        }
+
+        .photo-slide:nth-child(4) {
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.2)), 
+                        url('./asset/image4.jpg');
+            background-size: cover;
+            background-position: bottom;
+        }
+
+        .photo-slide:nth-child(5) {
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.2)), 
+                        url('./asset/image5.jpg');
+            background-size: cover;
+            background-position: bottom;
+        }
+
+        .photo-slide:nth-child(6) {
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.2)), 
+                        url('./asset/image6.png');
+            background-size: cover;
+            background-position: bottom;
+        }
+
+        .photo-content {
+            text-align: center;
+            color: white;
+            z-index: 2;
+        }
+
+        .photo-icon {
+            font-size: 4rem;
+            margin-bottom: 24px;
+            opacity: 0.9;
+        }
+
+        .photo-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .photo-date {
+            font-size: 1.1rem;
+            opacity: 0.8;
+            text-shadow: 0 1px 5px rgba(0, 0, 0, 0.3);
+        }
+
+        /* 캐러셀 네비게이션 */
+        .carousel-nav {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-top: 30px;
+        }
+
+        .carousel-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #e9ecef;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .carousel-dot.active {
+            background: #1a1a1a;
+            transform: scale(1.2);
+        }
+
+        .carousel-dot:hover {
+            background: #495057;
+        }
+
+        /* 캐러셀 화살표 */
+        .carousel-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            z-index: 3;
+        }
+
+        .carousel-arrow:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .carousel-arrow.prev {
+            left: 20px;
+        }
+
+        .carousel-arrow.next {
+            right: 20px;
+        }
+
+        /* Showcase 섹션 */
+        .showcase-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+        }
+
+        .project-card {
+            background: white;
+            border: 1px solid #e9ecef;
+            border-radius: 16px;
+            padding: 32px 24px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            border-color: #1a1a1a;
+        }
+
+        .project-avatar {
+            width: 60px;
+            height: 60px;
+            background: #1a1a1a;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 1.5rem;
+            color: white;
+        }
+
+        .project-card h4 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #1a1a1a;
+            margin-bottom: 8px;
+        }
+
+        .project-type {
+            font-size: 0.85rem;
+            color: #6c757d;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .project-links {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+        }
+
+        .project-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 10px 18px;
+            background: #1a1a1a;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 500;
+            font-size: 0.85rem;
+            transition: all 0.2s ease;
+            flex: 1;
+        }
+
+        .project-link:hover {
+            background: #333;
+            transform: translateY(-2px);
+        }
+
+        .project-link.notion {
+            background: #e9ecef;
+            color: #1a1a1a;
+        }
+
+        .project-link.notion:hover {
+            background: #dee2e6;
+        }
+
+        /* 푸터 */
+        .footer {
+            background: #1a1a1a;
+            color: white;
+            text-align: center;
+            padding: 60px 40px;
+        }
+
+        .footer-title {
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 16px;
+            letter-spacing: -1px;
+        }
+
+        .footer-subtitle {
+            color: #adb5bd;
+            margin-bottom: 32px;
+        }
+
+        .footer-info {
+            color: #6c757d;
+            font-size: 0.9rem;
+        }
+
+        /* 플로팅 액션 버튼 */
+        .fab {
+            position: fixed;
+            bottom: 32px;
+            right: 32px;
+            width: 56px;
+            height: 56px;
+            background: #1a1a1a;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            cursor: pointer;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            z-index: 999;
+        }
+
+        .fab:hover {
+            transform: scale(1.1);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        /* 반응형 디자인 */
+        @media (max-width: 768px) {
+            .header {
+                padding: 16px 24px;
+            }
+
+            .header-content {
+                flex-direction: column;
+                gap: 16px;
+                text-align: center;
+            }
+
+            .header-nav {
+                gap: 24px;
+            }
+
+            .header-nav a {
+                font-size: 0.875rem;
+            }
+
+            .hero {
+                padding: 80px 24px 60px;
+            }
+
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .hero-nav {
+                flex-direction: column;
+                width: 100%;
+                max-width: 300px;
+            }
+
+            .nav-link {
+                justify-content: center;
+                padding: 14px 20px;
+            }
+
+            .section {
+                padding: 80px 24px;
+            }
+
+            .section-title {
+                font-size: 2.5rem;
+            }
+
+            .classroom-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .showcase-grid {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            }
+
+            .hero-stats {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 40px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header-left {
+                gap: 12px;
+            }
+
+            .header-image {
+                width: 40px;
+                height: 40px;
+            }
+
+            .header-text h1 {
+                font-size: 1.25rem;
+            }
+
+            .header-text p {
+                font-size: 0.8rem;
+            }
+
+            .hero-title {
+                font-size: 2rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .hero-stats {
+                grid-template-columns: 1fr;
+                gap: 32px;
+            }
+
+            .fab {
+                bottom: 24px;
+                right: 24px;
+                width: 56px;
+                height: 56px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 전문적인 헤더 -->
+    <header class="header">
+        <div class="header-content">
+            <div class="header-left">
+                
+                <div class="header-text">
+                    <h1>메고브레비</h1>
+                    <p>WFK ICT Volunteers</p>
+                </div>
+            </div>
+            <nav class="header-nav">
+                <a href="#classroom">ClassRoom</a>
+                <a href="#photos">Photo</a>
+                <a href="#showcase">Showcase</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- 메인 콘텐츠 -->
+    <main>
+        <!-- 메인 히어로 섹션 -->
+        <section class="hero">
+            <h1 class="hero-title">메고브레비</h1>
+            <p class="hero-description">
+                Jeju National University <br/>
+                WFK ICT 해외 봉사단
+            </p>
+
+        <!-- 인스타그램 섹션 -->
+        <a href="https://www.instagram.com/georgia.magazine/">
+          <div style="flex: 1; min-width: 300px;">
+            <div style="background: white; border-radius: 20px; padding: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); border: 1px solid rgba(225, 48, 108, 0.1);">
+                <img src="./asset/image.png" alt="메고브레비 인스타그램 프로필" style="width: 100%; height: 400px; object-fit: cover; border-radius: 16px;">
+            </div>
+        </div>
+        </a>
+            
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <span class="stat-number">20+</span>
+                    <span class="stat-label">Students</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">60+</span>
+                    <span class="stat-label">Projects</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">3</span>
+                    <span class="stat-label">Weeks</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">99%</span>
+                    <span class="stat-label">Passion</span>
+                </div>
+            </div>
+
+                        <!-- 네비게이션 -->
+            <div class="hero-nav">
+                <a href="#classroom" class="nav-link" data-icon="📚">ClassRoom</a>
+                <a href="#photos" class="nav-link" data-icon="📸">Photo</a>
+                <a href="#showcase" class="nav-link" data-icon="🚀">Showcase</a>
+            </div>
+        </section>
+
+        <!-- ClassRoom 섹션 -->
+        <section id="classroom" class="section">
+            <div class="section-header">
+                <h2 class="section-title">ClassRoom</h2>
+            </div>
+
+            <div class="classroom-grid">
+                <div class="class-card">
+                    <h3>Day 1: Notion</h3>
+                    <p>협업툴인 노션에 대해 알아보고, 노션의 문법을 배워봅니다.</p>
+                    <a href="https://gusty-ptarmigan-47e.notion.site/Notion-Day1-231e586e3fdb8045808cc8665666554d" class="class-link">자료 보기 →</a>
+                </div>
+
+                <div class="class-card">
+                    <h3>Day 2: Notion</h3>
+                    <p>노션의 데이터베이스에 대해 알아보고, 팀 프로젝트를 수행합니다.</p>
+                    <a href="https://gusty-ptarmigan-47e.notion.site/Notion-Day-2-23fe586e3fdb80d2b727f1094de38b52" class="class-link">자료 보기 →</a>
+                </div>
+
+                <div class="class-card">
+                    <h3>Day 3: AI</h3>
+                    <p>AI의 발전과정에 대해 배워보고, 나만의 챗봇을 만들어봅니다.</p>
+                    <a href="https://www.canva.com/design/DAGtldzOhj4/Q8SJlZyZuwiVD8B53p3rpA/edit?utm_content=DAGtldzOhj4&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton" class="class-link">자료 보기 →</a>
+                </div>
+
+                <div class="class-card">
+                    <h3>Day 4: AI</h3>
+                    <p>나만의 사이트를 만들기 위한 HTML 구조와 문법을 배워봅니다.</p>
+                    <a href="https://www.canva.com/design/DAGvAjtHUa4/6YHnP6haBCZm2kSpcJcEEw/edit?utm_content=DAGvAjtHUa4&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton" class="class-link">자료 보기 →</a>
+                </div>
+
+                <div class="class-card">
+                    <h3>Day 5: AI</h3>
+                    <p>나만의 포트폴리오를 만들고, 생성형 AI를 활용해 디자인해봅니다. 이후, Gihub Pages를 사용해 배포까지 진행합니다.</p>
+                    <a href="https://www.canva.com/design/DAGvHcCyUBo/IgK-QpvwprfVXp0Iga5A0g/edit?utm_content=DAGvHcCyUBo&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton" class="class-link">자료 보기 →</a>
+                </div>
+
+                <div class="class-card">
+                    <h3>Day 6: Adobe Premiere Pro</h3>
+                    <p>어도비 프리미어 프로에 대해 알아보고, 기본적인 비디오 편집 방법을 배웁니다.</p>
+                    <a href="https://www.canva.com/design/DAGtlD4yvyE/CqwrxD-FH_SGARz3TfPeMA/edit?utm_content=DAGtlD4yvyE&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton" class="class-link">자료 보기 →</a>
+                </div>
+
+                <div class="class-card">
+                    <h3>Day 7: Adobe Premiere Pro</h3>
+                    <p>어도비 프리미어를 활용해 오디오를 편집하는 방법을 배웁니다.</p>
+                    <a href="https://www.canva.com/design/DAGvGlFSGbY/5b4d0hJUSfUL8taAnsoZxg/edit?utm_content=DAGvGlFSGbY&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton" class="class-link">자료 보기 →</a>
+                </div>
+
+                <div class="class-card">
+                    <h3>Day 8: Adobe Premiere Pro</h3>
+                    <p>어도비 프리미어를 활용해 텍스트 편집하는 방법을 배웁니다.</p>
+                    <a href="https://www.canva.com/design/DAGth619Rf0/3pC04IhxBpo4jxqdL5gQcg/edit?utm_content=DAGth619Rf0&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton" class="class-link">자료 보기 →</a>
+                </div>
+
+                <div class="class-card">
+                    <h3>Day 9: Adobe Premiere Pro</h3>
+                    <p>어도비 프리미어를 활용해 비디오 이펙트 효과를 배웁니다.</p>
+                    <a href="https://www.canva.com/design/DAGvrA-owHA/B21X2D-n7RhKzhijsO96Sg/edit" class="class-link">자료 보기 →</a>
+                </div>
+
+                <div class="class-card">
+                    <h3>Day 10: Adobe Premiere Pro</h3>
+                    <p>어도비 프리미어를 활용해 다양한 고급 효과를 배웁니다.</p>
+                    <a href="#" class="class-link">자료 보기 →</a>
+                </div>
+
+                <div class="class-card">
+                    <h3>Day 11: Adobe Premiere Pro</h3>
+                    <p>지금까지 배운 모든 기술을 활용해 자신만의 영상을 만들고 발표합니다.</p>
+                    <a href="#" class="class-link">전시회 영상 보기 →</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Photo 섹션 -->
+        <section id="photos" class="section">
+            <div class="section-header">
+                <h2 class="section-title">Photo</h2>
+            </div>
+
+            <div class="photo-carousel">
+                <div class="photo-slide active">
+                    <div class="photo-content">
+                    </div>
+                </div>
+                
+                <div class="photo-slide">
+                    <div class="photo-content">
+                    </div>
+                </div>
+                
+                <div class="photo-slide">
+                    <div class="photo-content">
+                    </div>
+                </div>
+                
+                <div class="photo-slide">
+                    <div class="photo-content">
+                    </div>
+                </div>
+                
+                <div class="photo-slide">
+                    <div class="photo-content">
+                    </div>
+                </div>
+                
+                <div class="photo-slide">
+                    <div class="photo-content">
+                    </div>
+                </div>
+
+
+        <!-- 캐러셀 화살표 -->
+        <button class="carousel-arrow prev" onclick="prevPhoto()">‹</button>
+        <button class="carousel-arrow next" onclick="nextPhoto()">›</button>
+      </div>
+
+      <!-- 캐러셀 네비게이션 -->
+      <div class="carousel-nav">
+        <div class="carousel-dot active" onclick="currentPhoto(1)"></div>
+        <div class="carousel-dot" onclick="currentPhoto(2)"></div>
+        <div class="carousel-dot" onclick="currentPhoto(3)"></div>
+        <div class="carousel-dot" onclick="currentPhoto(4)"></div>
+        <div class="carousel-dot" onclick="currentPhoto(5)"></div>
+        <div class="carousel-dot" onclick="currentPhoto(6)"></div>
+      </div>
+    </section>
+
+    <!-- Showcase 섹션 -->
+    <section id="showcase" class="section">
+      <h2 class="section-title">Showcase</h2>
+      <p class="section-subtitle">프로젝트 전시회</p>
+
+      <div class="showcase-grid">
+        <div class="project-card">
+          <div class="project-avatar">🇬🇪</div>
+          <h4>Abulashvili</h4>
+          <div class="project-links">
+            <a href="https://90ghsajsdgsddu.github.io/Georgia_AI_Class/" class="project-link" target="_blank">Visit Site ↗</a>
+            <a href="https://www.notion.so/ANNE-S-NOTION-WORKSPACE-23f5b0bb273080d68d57e2c6f5765f0a?source=copy_link" class="project-link notion" target="_blank"
+              >Visit Notion 📝</a
+            >
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-avatar">🇬🇪</div>
+          <h4>Arveladze</h4>
+          <div class="project-links">
+            <a href="https://anano1234.github.io/Georgia_AI_Class/" class="project-link" target="_blank">Visit Site ↗</a>
+            <a href="https://elite-trowel-4d8.notion.site/Hello-23f186c3ebf380b4a45fe5656e4ca05a?source=copy_link" class="project-link notion" target="_blank"
+              >Visit Notion 📝</a
+            >
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-avatar">🇬🇪</div>
+          <h4>Aznarashvili</h4>
+          <div class="project-links">
+            <a href="https://8on8on8-ctrl.github.io/Georgia-IA-class/" class="project-link" target="_blank">Visit Site ↗</a>
+            <a href="https://equatorial-hair-ddb.notion.site/elene-23f851967f3980d3a0e6e98a192b6838" class="project-link notion" target="_blank"
+              >Visit Notion 📝</a
+            >
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-avatar">🇬🇪</div>
+          <h4>Bekurishvili</h4>
+          <div class="project-links">
+            <a href="https://julia090901.github.io/Georgia_AI_Class/" class="project-link" target="_blank">Visit Site ↗</a>
+            <a href="https://oxidized-rail-60f.notion.site/HI-THERE-THIS-IS-GULI-23f28f370f28807fb819e16dc4d7ce4e?source=copy_link" class="project-link notion" target="_blank"
+              >Visit Notion 📝</a
+            >
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-avatar">🇬🇪</div>
+          <h4>Chaladze</h4>
+          <div class="project-links">
+            <a href="https://shokoiac.github.io/Georgia_AI_Class/" class="project-link" target="_blank">Visit Site ↗</a>
+            <a href="https://www.notion.so/S-H-O-K-O-s-Profile-23fc90c81289801c9811c13af8ba2795" class="project-link notion" target="_blank"
+              >Visit Notion 📝</a
+            >
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-avatar">🇬🇪</div>
+          <h4>Daji elgendarashvili</h4>
+          <div class="project-links">
+            <a href="#" class="project-link" target="_blank">Visit Site ↗</a>
+            <a href="https://dajielge.github.io/Georgia_AI_Class/" class="project-link notion" target="_blank"
+              >Visit Notion 📝</a
+            >
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-avatar">🇬🇪</div>
+          <h4>Gachechiladz</h4>
+          <div class="project-links">
+            <a href="#https://shimmering-order-64f.notion.site/Mariam-23f06c5f405a8048b274d74feed03d4b?source=copy_link" class="project-link" target="_blank">Visit Site ↗</a>
+            <a href="https://marianari01.github.io/Georgia_AI_class/" class="project-link notion" target="_blank"
+              >Visit Notion 📝</a
+            >
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-avatar">🇬🇪</div>
+          <h4>Geliashvili</h4>
+          <div class="project-links">
+            <a href="https://geliashvilikhatuna00-creator.github.io/Georgia_AI_Class/" class="project-link" target="_blank">Visit Site ↗</a>
+            <a href="https://quilled-smoke-bcb.notion.site/About-me-23fc5c57cb7c80099262c3970b8de7c8?source=copy_link" class="project-link notion" target="_blank"
+              >Visit Notion 📝</a
+            >
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-avatar">🇬🇪</div>
+          <h4>Iakobishvili</h4>
+          <div class="project-links">
+            <a href="https://natttyy-iak.github.io/-Georgia_AI_Class/" class="project-link" target="_blank">Visit Site ↗</a>
+            <a href="https://notch-engine-bd6.notion.site/NATTY-23feb8b8c926801c961dc783dcdd63f9?source=copy_link" class="project-link notion" target="_blank"
+              >Visit Notion 📝</a
+            >
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-avatar">🇬🇪</div>
+          <h4>Kardava</h4>
+          <div class="project-links">
+            <a href="https://bekakardava958-tech.github.io/Georgia_AI_Class/" class="project-link" target="_blank">Visit Site ↗</a>
+            <a href="https://www.notion.so/Beka-23fc5f2f6c2080fbaaa1c76fc3b3cad2?source=copy_link" class="project-link notion" target="_blank"
+              >Visit Notion 📝</a
+            >
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-avatar">🇬🇪</div>
+          <h4>Kurtanidze</h4>
+          <div class="project-links">
+            <a href="#" class="project-link" target="_blank">Visit Site ↗</a>
+            <a href="https://crystalline-country-349.notion.site/Gvantsa-23f18a287aa9803bab33d5f38a31196b?source=copy_link" class="project-link notion" target="_blank"
+              >Visit Notion 📝</a
+            >
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-avatar">🇬🇪</div>
+          <h4>Kvikvinia</h4>
+          <div class="project-links">
+            <a href="https://tkvikvinia-stack.github.io/Georgia_AI_Class/" class="project-link" target="_blank">Visit Site ↗</a>
+            <a href="https://grizzly-line-217.notion.site/Tatia-23f26778df7c8088a5d5d1a49b5a75b4" class="project-link notion" target="_blank"
+              >Visit Notion 📝</a
+            >
+          </div>
+
+        </div>
+        <div class="project-card">
+          <div class="project-avatar">🇬🇪</div>
+          <h4>Lomsadze</h4>
+          <div class="project-links">
+            <a href="https://anaaaaaaaaaaaaaaaaaaaaa.github.io/Georgia_AI_Class/" class="project-link" target="_blank">Visit Site ↗</a>
+            <a href="https://second-musician-fdf.notion.site/Ana-23f9101cccff80bb813dc0e98051e8b1?source=copy_link" class="project-link notion" target="_blank"
+              >Visit Notion 📝</a
+            >
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-avatar">🇬🇪</div>
+          <h4>Manjavidze</h4>
+          <div class="project-links">
+            <a href="#" class="project-link" target="_blank">Visit Site ↗</a>
+            <a href="https://obsidian-mahogany-ff3.notion.site/About-Manjo-23f3725513b980149b3ceaa00519e710" class="project-link notion" target="_blank"
+              >Visit Notion 📝</a
+            >
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-avatar">🇬🇪</div>
+          <h4>Otarashvili</h4>
+          <div class="project-links">
+            <a href="#" class="project-link" target="_blank">Visit Site ↗</a>
+            <a href="https://sphenoid-specialist-608.notion.site/lika-23f0dd383ce2807c8ddafe3b006eea46?source=copy_link" class="project-link notion" target="_blank"
+              >Visit Notion 📝</a
+            >
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-avatar">🇬🇪</div>
+          <h4>Sarjveladze</h4>
+          <div class="project-links">
+            <a href="https://tomato5678.github.io/georgia_AI_classs/" class="project-link" target="_blank">Visit Site ↗</a>
+            <a href="https://fragrant-button-51a.notion.site/Ha-Yoon-s-notion-23fedc5e7a88803a8531d9888d08f9f7" class="project-link notion" target="_blank"
+              >Visit Notion 📝</a
+            >
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-avatar">🇬🇪</div>
+          <h4>Somkhishvili</h4>
+          <div class="project-links">
+            <a href="https://sofomas169-gif.github.io/Georgia_Ai_Class/" class="project-link" target="_blank">Visit Site ↗</a>
+            <a href="#" class="project-link notion" target="_blank"
+              >Visit Notion 📝</a
+            >
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-avatar">🇬🇪</div>
+          <h4>Tavartqiladze</h4>
+          <div class="project-links">
+            <a href="#" class="project-link" target="_blank">Visit Site ↗</a>
+            <a href="https://nice-brace-38d.notion.site/qqwqwqweqw-23f89f757f6d8059bd9cc0ce27810ea3?source=copy_link" class="project-link notion" target="_blank"
+              >Visit Notion 📝</a
+            >
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-avatar">🇬🇪</div>
+          <h4>Svanidze</h4>
+          <div class="project-links">
+            <a href="https://salibalimsxali.github.io/Georgia_Ai_Class/" class="project-link" target="_blank">Visit Site ↗</a>
+            <a href="https://snapdragon-crystal-aad.notion.site/Hello-I-m-Salome-23fcf991e382808f8c98c03205375a8f?source=copy_link" class="project-link notion" target="_blank"
+              >Visit Notion 📝</a
+            >
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-avatar">🇬🇪</div>
+          <h4>Tabidze</h4>
+          <div class="project-links">
+            <a href=" https://kitsivannn.github.io/Georgia_AI_Class/" class="project-link" target="_blank">Visit Site ↗</a>
+            <a href="#" class="project-link notion" target="_blank"
+              >Visit Notion 📝</a
+            >
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-avatar">🇬🇪</div>
+          <h4>Giorgi Tsaava</h4>
+          <div class="project-links">
+            <a href="https://giosomnia.github.io/Georgia_AI_Class/" class="project-link" target="_blank">Visit Site ↗</a>
+            <a href="https://butternut-column-0f4.notion.site/Dreamcatcher-23f2722b0f9780dbb311d5a877c2efdf?source=copy_link" class="project-link notion" target="_blank"
+              >Visit Notion 📝</a
+            >
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-avatar">🇬🇪</div>
+          <h4>Makharadze Salome</h4>
+          <div class="project-links">
+            <a href="https://salome993.github.io/Georgia_AI_Class/" class="project-link" target="_blank">Visit Site ↗</a>
+            <a href="https://www.notion.so/Profile-24052df4fdcb80188131ebaacde8770f?source=copy_link" class="project-link notion" target="_blank"
+              >Visit Notion 📝</a
+            >
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 푸터 -->
+    <footer class="footer">
+      <h3 class="footer-title">메고브레비</h3>
+      <p class="footer-subtitle">WFK ICT volunteers • WFK ICT 해외 봉사단</p>
+      <p class="footer-info">
+        © 2025 메고브레비 팀. WFK ICT Volunteering Program의 일환으로
+        제작되었습니다.
+      </p>
+    </footer>
+
+    <!-- 플로팅 액션 버튼 -->
+    <button
+      class="fab"
+      onclick="window.scrollTo({top: 0, behavior: 'smooth'})"
+      title="맨 위로"
+    >
+      ↑
+    </button>
+
+    <script>
+      // 포토 캐러셀
+      let currentPhotoSlide = 0;
+      const photoSlides = document.querySelectorAll(".photo-slide");
+      const photoDots = document.querySelectorAll(".carousel-dot");
+
+      function showPhoto(n) {
+        photoSlides.forEach((slide) => slide.classList.remove("active"));
+        photoDots.forEach((dot) => dot.classList.remove("active"));
+
+        photoSlides[n].classList.add("active");
+        photoDots[n].classList.add("active");
+      }
+
+      function nextPhoto() {
+        currentPhotoSlide = (currentPhotoSlide + 1) % photoSlides.length;
+        showPhoto(currentPhotoSlide);
+      }
+
+      function prevPhoto() {
+        currentPhotoSlide =
+          (currentPhotoSlide - 1 + photoSlides.length) % photoSlides.length;
+        showPhoto(currentPhotoSlide);
+      }
+
+      function currentPhoto(n) {
+        currentPhotoSlide = n - 1;
+        showPhoto(currentPhotoSlide);
+      }
+
+      // 5초마다 사진 자동 변경
+      setInterval(nextPhoto, 5000);
+
+      // 부드러운 스크롤 네비게이션
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+          e.preventDefault();
+          const target = document.querySelector(this.getAttribute("href"));
+          if (target) {
+            target.scrollIntoView({
+              behavior: "smooth",
+              block: "start",
+            });
+          }
+        });
+      });
+
+      // 카드 호버 애니메이션
+      document
+        .querySelectorAll(".class-card, .project-card, .photo-card")
+        .forEach((card) => {
+          card.addEventListener("mouseenter", function () {
+            this.style.transform = "translateY(-8px)";
+          });
+
+          card.addEventListener("mouseleave", function () {
+            this.style.transform = "translateY(0)";
+          });
+        });
+    </script>
+  </body>
+</html>
